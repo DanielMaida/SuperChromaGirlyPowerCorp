@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private Collider2D spriteCollider;
 
     private const float gravityForce = 13f;
-    private const float jumpSpeed = 12f;
+    private const float jumpSpeed = 20f;
     private const float jumpHeight = 3f;
 
     private bool stomp;

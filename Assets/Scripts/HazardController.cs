@@ -26,7 +26,8 @@ public class HazardController : MonoBehaviour {
                 SpawnTentacle();
                 waveSpawns = 0;
             }
-            yield return new WaitForSeconds(4f);
+            float frequency = Random.Range(1, 8);
+            yield return new WaitForSeconds(frequency / 2);
         }
     }
 
