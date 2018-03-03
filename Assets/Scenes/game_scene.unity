@@ -494,10 +494,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5759739a99e4e24ca7e82def7425a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  spriteCollider: {fileID: 0}
-  stomp: 0
-  dazed: 0
 --- !u!4 &339603285
 Transform:
   m_ObjectHideFlags: 0
@@ -563,9 +559,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7c3ec708c63bce943a9f437a9fd59400, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0577c829933d146cbb0d33d706a48b1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8.16, y: 6.5}
@@ -581,7 +577,7 @@ Transform:
   m_GameObject: {fileID: 378329868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.13, y: -0.23, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -931,10 +927,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f570770c755e33844a37208f597a1921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  spriteCollider: {fileID: 0}
-  stomp: 0
-  dazed: 0
 --- !u!4 &1156625715
 Transform:
   m_ObjectHideFlags: 0
@@ -1131,7 +1123,7 @@ Transform:
   m_GameObject: {fileID: 1975175189}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 62912665}
   m_RootOrder: 0
@@ -1170,9 +1162,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 8cf3daf7850fe3d4cb48560cbd94450c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 54832ebcb3f714e01aee59037d7418be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.16, y: 0.16}
@@ -1195,8 +1187,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.10116339}
-    oldSize: {x: 4.65, y: 4.25}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.61, y: 2.8}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

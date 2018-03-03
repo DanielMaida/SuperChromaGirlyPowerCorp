@@ -31,10 +31,10 @@ public class PlayerController : MonoBehaviour
         if (shaking)
         {
             sprite.localScale -= new Vector3(0, 1f * Time.deltaTime, 0);
-            if (sprite.localScale.y <= .5)
+            if (sprite.localScale.y <= 1)
             {
                 shaking = false;
-                sprite.localScale = new Vector2(sprite.localScale.x, .5f);
+				sprite.localScale = new Vector2(sprite.localScale.x, sprite.localScale.y);
             }
         }
         if (Input.GetKeyDown(KeyCode.Z) && isGrounded && !dazed)
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 struggleCounter++;
-                sprite.localScale = new Vector2(sprite.localScale.x, 0.7f);
+                sprite.localScale = new Vector2(sprite.localScale.x, 1.2f);
                 shaking = true;
                 if (struggleCounter > 6)
                 {
