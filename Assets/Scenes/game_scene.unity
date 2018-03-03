@@ -446,6 +446,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!4 &317000768 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4396060853546818, guid: 762a134d419bd644a843a6cd100c93ba,
+    type: 2}
+  m_PrefabInternal: {fileID: 1970761718}
 --- !u!1 &339603282
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,10 +499,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5759739a99e4e24ca7e82def7425a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  spriteCollider: {fileID: 0}
-  stomp: 0
-  dazed: 0
 --- !u!4 &339603285
 Transform:
   m_ObjectHideFlags: 0
@@ -931,10 +932,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f570770c755e33844a37208f597a1921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  spriteCollider: {fileID: 0}
-  stomp: 0
-  dazed: 0
 --- !u!4 &1156625715
 Transform:
   m_ObjectHideFlags: 0
@@ -950,6 +947,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1238905181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1615983006568128, guid: 762a134d419bd644a843a6cd100c93ba,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1238905182}
+  - component: {fileID: 1238905183}
+  m_Layer: 9
+  m_Name: Sucker2
+  m_TagString: Sucker
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1238905182
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4853078365811096, guid: 762a134d419bd644a843a6cd100c93ba,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1238905181}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.02, y: -0.269, z: 0}
+  m_LocalScale: {x: 1.0000024, y: 0.9999997, z: 1}
+  m_Children: []
+  m_Father: {fileID: 317000768}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &1238905183
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 70034923346431600, guid: 762a134d419bd644a843a6cd100c93ba,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1238905181}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.000003843335, y: 0.3632742}
+  m_Size: {x: 0.50000656, y: 0.16220832}
+  m_Direction: 0
 --- !u!1 &1797674552
 GameObject:
   m_ObjectHideFlags: 0
