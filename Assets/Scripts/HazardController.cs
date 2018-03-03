@@ -6,7 +6,7 @@ public class HazardController : MonoBehaviour {
 
     public GameObject[] Hazards;
 
-    
+    private int waveSpawns = 0;
     
     // Use this for initialization
 	void Start () {
@@ -16,18 +16,27 @@ public class HazardController : MonoBehaviour {
 	IEnumerator CreateHazards()
     {
         while (true) {
-            SpawnWave();
-            yield return new WaitForSeconds(1.5f);
+            if (waveSpawns < 2)
+            {
+                SpawnWave();
+                waveSpawns++;
+            }
+            else
+            {
+                SpawnTentacle();
+                waveSpawns = 0;
+            }
+            yield return new WaitForSeconds(4f);
         }
     }
 
 
     void SpawnWave()
     {
-        Instantiate(Hazards[0], transform.position, Quaternion.identity);
+        Instantiate(Hazards[0], transform.position, Hazards[0].transform.rotation);
     }
 
     void SpawnTentacle() {
-        Instantiate(Hazards[1], transform.position, Quaternion.identity);
+        Instantiate(Hazards[1], transform.position, Hazards[1].transform.rotation);
     }
 }

@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4853078365811096}
-  - component: {fileID: 58139504329833622}
+  - component: {fileID: 70034923346431600}
   m_Layer: 9
   m_Name: Sucker
-  m_TagString: Untagged
+  m_TagString: Sucker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1895988819027530}
   m_LocalRotation: {x: -0, y: -0, z: 0.16053642, w: 0.98702997}
-  m_LocalPosition: {x: -8.72, y: -1.388, z: -9.27}
+  m_LocalPosition: {x: -6.7, y: -1.03, z: -9.27}
   m_LocalScale: {x: 1.198057, y: 7.8106008, z: 1}
   m_Children:
   - {fileID: 4853078365811096}
@@ -135,21 +135,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58139504329833622
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1615983006568128}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.020066753, y: 0.26418772}
-  serializedVersion: 2
-  m_Radius: 0.0423984
 --- !u!61 &61317159642003110
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -162,7 +147,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.000000059604645}
+  m_Offset: {x: 0.44262338, y: 0.000000059604645}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -173,8 +158,23 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.114753276, y: 1}
   m_EdgeRadius: 0
+--- !u!70 &70034923346431600
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1615983006568128}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.000003843335, y: 0.3632742}
+  m_Size: {x: 0.50000656, y: 0.16220832}
+  m_Direction: 0
 --- !u!114 &114949618982817170
 MonoBehaviour:
   m_ObjectHideFlags: 1

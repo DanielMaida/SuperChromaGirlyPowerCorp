@@ -2,41 +2,71 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
-
+public class PlayerController : MonoBehaviour
+{
     private Transform sprite;
-    private BoxCollider2D spriteCollider;
+    private Collider2D spriteCollider;
 
     private const float gravityForce = 13f;
     private const float jumpSpeed = 12f;
     private const float jumpHeight = 3f;
 
-    private bool stomp; 
+    private bool stomp;
+    private bool dazed;
+    public int struggleCounter = 0;
 
-	void Start () {
+    public bool isGrounded;
+    public bool shaking;
+
+    void Start()
+    {
         sprite = transform.Find("Sprite");
-        spriteCollider = sprite.GetComponent<BoxCollider2D>();
+        spriteCollider = sprite.GetComponent<Collider2D>();
         spriteCollider.enabled = false;
-	}
-	
-	
-	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        isGrounded = true;
+    }
+
+    void Update()
+    {
+        if (shaking)
+        {
+            sprite.localScale -= new Vector3(0, 1f * Time.deltaTime, 0);
+            if (sprite.localScale.y <= .5)
+            {
+                shaking = false;
+                sprite.localScale = new Vector2(sprite.localScale.x, .5f);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Z) && isGrounded && !dazed)
         {
             StartCoroutine(Jump());
         }
-	}
-
-    private bool HighestPeak() {
-        return sprite.localPosition.y >= jumpHeight;
+        if (dazed)
+        {
+            sprite.GetComponent<SpriteRenderer>().color = Color.grey;
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                struggleCounter++;
+                sprite.localScale = new Vector2(sprite.localScale.x, 0.7f);
+                shaking = true;
+                if (struggleCounter > 6)
+                {
+                    dazed = false;
+                    sprite.GetComponent<SpriteRenderer>().color = Color.white;
+                }
+            }
+        }
     }
 
-    private bool IsGrounded() {
-        return sprite.localPosition.y <= .01f;
+    private bool HighestPeak()
+    {
+        return sprite.localPosition.y >= jumpHeight;
     }
 
     IEnumerator Jump()
     {
+        spriteCollider.enabled = true;
+        isGrounded = false;
         while (!HighestPeak())
         {
             sprite.position = sprite.position + (Vector3.up * jumpSpeed * Time.deltaTime);
@@ -44,39 +74,39 @@ public class PlayerController : MonoBehaviour {
         }
         yield return new WaitForSeconds(.05f);
         spriteCollider.enabled = true;
-        while (!IsGrounded())
+        while (sprite.localPosition.y > 0)
         {
             sprite.position = sprite.position - (Vector3.up * gravityForce * Time.deltaTime);
             yield return null;
         }
         spriteCollider.enabled = false;
-        sprite.localPosition = new Vector2(0, 0.01f);
-    }
-
-    private void DamagePlayer()
-    {
-        Debug.Log("Damage");
-        //Implement the sticky goo 
+        isGrounded = true;
+        sprite.localPosition = Vector2.zero;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Hazard") && CanBeHurt())
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Hazard") && CanBeHurt())
         {
-            DamagePlayer();
+            HitPlayer();
             Destroy(collision.gameObject);
         }
-        if(collision.gameObject.layer == LayerMask.NameToLayer("HittableHazard")){
+        if (collision.gameObject.layer == LayerMask.NameToLayer("HittableHazard"))
+        {
+            Debug.Log("filha da puta");
             Destroy(collision.transform.parent.gameObject);
         }
     }
 
- 
-    
+    private void HitPlayer()
+    {
+        dazed = true;
+        struggleCounter = 0;
+    }
+
     private bool CanBeHurt()
     {
         return sprite.localPosition.y < .5f;
     }
-
-
+    
 }
