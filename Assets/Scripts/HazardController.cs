@@ -17,7 +17,8 @@ public class HazardController : MonoBehaviour {
     {
         while (true) {
             SpawnWave();
-            yield return new WaitForSeconds(1.5f);
+			float frequency = Random.Range (1, 8);
+			yield return new WaitForSeconds(frequency/2);
         }
     }
 
