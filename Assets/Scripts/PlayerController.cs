@@ -5,24 +5,31 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Transform sprite;
+    private Transform shadow;
     private Collider2D spriteCollider;
+    private Collider2D shadowCollider;
 
-    private const float gravityForce = 13f;
-    private const float jumpSpeed = 20f;
+    private const float gravityForce = 17f;
+    private const float jumpSpeed = 13f;
     private const float jumpHeight = 3f;
 
     private bool stomp;
     private bool dazed;
     public int struggleCounter = 0;
 
+    public string laneTag;
     public bool isGrounded;
     public bool shaking;
+
+    public KeyCode jumpKey;
 
     void Start()
     {
         sprite = transform.Find("Sprite");
         spriteCollider = sprite.GetComponent<Collider2D>();
         spriteCollider.enabled = false;
+        shadow = transform.Find("Shadow");
+        shadowCollider = shadow.GetComponent<Collider2D>();
         isGrounded = true;
     }
 
@@ -34,17 +41,17 @@ public class PlayerController : MonoBehaviour
             if (sprite.localScale.y <= 1)
             {
                 shaking = false;
-				sprite.localScale = new Vector2(sprite.localScale.x, sprite.localScale.y);
+                sprite.localScale = new Vector2(sprite.localScale.x, sprite.localScale.y);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Z) && isGrounded && !dazed)
+        if (Input.GetKeyDown(jumpKey) && isGrounded && !dazed)
         {
             StartCoroutine(Jump());
         }
         if (dazed)
         {
             sprite.GetComponent<SpriteRenderer>().color = Color.grey;
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(jumpKey))
             {
                 struggleCounter++;
                 sprite.localScale = new Vector2(sprite.localScale.x, 1.2f);
@@ -89,15 +96,43 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Hazard") && CanBeHurt())
         {
             HitPlayer();
-            Destroy(collision.gameObject);
+            if (!collision.gameObject.CompareTag("TentacleDanger") && !collision.gameObject.CompareTag("Tornado"))
+            {
+                Destroy(collision.gameObject);
+            }
         }
-        if (collision.gameObject.layer == LayerMask.NameToLayer("WeakPoint"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("WeakPoint") && collision.CompareTag(laneTag))
         {
-            Destroy(collision.transform.parent.gameObject);
+            if (collision.transform.parent.CompareTag("Tentacle"))
+            {
+                collision.transform.parent.gameObject.GetComponent<TentacleHazard>().DecreaseHitpoints();
+                Destroy(collision.transform.gameObject.GetComponent<CircleCollider2D>());
+            }
+            if (collision.transform.parent.CompareTag("Tornado"))
+            {
+                collision.transform.parent.gameObject.GetComponent<TornadoScript>().DecreaseHitpoints();
+            }
+            else
+            {
+                //Minion death animation here
+                Destroy(collision.transform.parent.gameObject);
+            }
         }
     }
 
-    private void HitPlayer()
+    IEnumerator Bump()
+    {
+        shadowCollider.enabled = false;
+        while (sprite.localPosition.y < 2.3f)
+        {
+            sprite.position = sprite.position + (Vector3.up * jumpSpeed * Time.deltaTime);
+            yield return null;
+        }
+        isGrounded = false;
+        shadowCollider.enabled = true;
+    }
+
+    public void HitPlayer()
     {
         dazed = true;
         struggleCounter = 0;
@@ -107,5 +142,5 @@ public class PlayerController : MonoBehaviour
     {
         return sprite.localPosition.y < .5f;
     }
-    
+
 }

@@ -4,39 +4,63 @@ using UnityEngine;
 
 public class HazardController : MonoBehaviour {
 
+    /// <summary>
+    /// 0 - Wave
+    /// 1 - Minion
+    /// 2 - Tentacle
+    /// 3 - Tornado
+    /// </summary>
     public GameObject[] Hazards;
     private int waveSpawns = 0;
-    
+    private GameObject[] spawns = new GameObject[5];
+    private bool[] previousSpawns = new bool[5];
+    public bool levelAcomplished;
+
+
     // Use this for initialization
 	void Start () {
-        StartCoroutine(CreateHazards());
+       for(int i = 1; i < 5; i++)
+        {
+            spawns[i] = transform.Find("Spawn" + i).gameObject;
+        }
+        StartCoroutine(LevelOne());
 	}
-	
-	IEnumerator CreateHazards()
+ 
+    IEnumerator LevelOne()
     {
-        while (true) {
-            if (waveSpawns < 2)
+        while (!levelAcomplished)
+        {
+            StartCoroutine(SpawnHazard(10, Hazards[0], 1f, false));
+            yield return new WaitForSeconds(10f);
+            StartCoroutine(SpawnHazard(15, Hazards[1], 1.5f, true));
+            yield return new WaitForSeconds(15 * 1.5f);
+            GameObject tentacle = Instantiate(Hazards[2], transform.position, Hazards[2].transform.rotation);
+            while( tentacle != null && tentacle.activeInHierarchy )
             {
-                SpawnWave();
-                waveSpawns++;
+                yield return null;
             }
-            else
-            {
-                SpawnTentacle();
-                waveSpawns = 0;
-            }
-            float frequency = Random.Range(1, 8);
-            yield return new WaitForSeconds(frequency / 2);
+            
         }
     }
 
-
-    void SpawnWave()
+    IEnumerator SpawnHazard(int numOfHazards, GameObject hazard, float spawnRate, bool tag)
     {
-        Instantiate(Hazards[0], transform.position, Hazards[0].transform.rotation);
+        int hazardCount = 0;
+        while (hazardCount < 10)
+        {
+            int spawnPosition = ChooseSpawnLane();
+            GameObject spawnedHazard =Instantiate(hazard, spawns[spawnPosition].transform.position, hazard.transform.rotation);
+            hazardCount++;
+            if(tag) {
+                spawnedHazard.GetComponent<MinionController>().SetWeakPointTag("Lane" + spawnPosition);
+            }
+            yield return new WaitForSeconds(spawnRate);
+        }
     }
 
-    void SpawnTentacle() {
-        Instantiate(Hazards[1], transform.position, Hazards[1].transform.rotation);
+    private int ChooseSpawnLane()
+    {
+        return Random.Range(1, 4);
     }
+
 }

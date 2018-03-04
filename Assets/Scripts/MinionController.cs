@@ -20,6 +20,11 @@ public class MinionController : MonoBehaviour {
             _rb.position += (Vector2.right * Time.deltaTime * minionSpeed);
     }
 
+    public void SetWeakPointTag(string tag)
+    {
+        transform.Find("WeakPoint").gameObject.tag = tag;
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("AttackZone"))
@@ -31,9 +36,8 @@ public class MinionController : MonoBehaviour {
 
     IEnumerator PrepareToAttack()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.6f);
         prepare = false;
         minionSpeed *= 2;
     }
-
 }

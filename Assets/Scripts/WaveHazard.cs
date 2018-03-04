@@ -6,30 +6,10 @@ public class WaveHazard : MonoBehaviour {
 
     private float waveSpeed = 5.5f;
     private Rigidbody2D _rb;
-    private GameObject[] waves = new GameObject[5];
 
 	// Use this for initialization
 	void Start () {
         _rb = GetComponent<Rigidbody2D>();
-		/*
-		for (int i = 1; i < 5; i++) {
-			waves [i] = transform.Find (i.ToString ()).gameObject;
-			int choose = Random.Range (1, 3);
-			if (choose == 2) {
-				waves [i].SetActive (false);
-			}
-			break;
-		}*/
-
-
-		//sorteia apenas 1 pra esconder
-		int choose = Random.Range (1, 3);
-		if (choose == 2) {
-			int randomWave = Random.Range (1, 5);
-			waves [randomWave] = transform.Find (randomWave.ToString ()).gameObject;
-			waves [randomWave].SetActive (false);
-		}
-
 	}
     
 	// Update is called once per frame

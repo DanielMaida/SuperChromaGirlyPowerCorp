@@ -6,6 +6,13 @@ public class HazardDestroyer : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(collision.gameObject);
+        if (collision.transform.parent != null)
+        {
+            Destroy(collision.transform.parent.gameObject);
+        }
+        else
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }

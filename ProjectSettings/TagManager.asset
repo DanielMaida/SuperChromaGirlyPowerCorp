@@ -6,6 +6,17 @@ TagManager:
   tags:
   - Sucker
   - AttackZone
+  - Player1
+  - Player2
+  - Player3
+  - Player4
+  - TentacleDanger
+  - Lane1
+  - Lane2
+  - Lane3
+  - Lane4
+  - Tentacle
+  - Tornado
   layers:
   - Default
   - TransparentFX
@@ -18,10 +29,10 @@ TagManager:
   - Hazard
   - WeakPoint
   - Stomp
-  - 
-  - 
-  - 
-  - 
+  - AttackZone
+  - Player
+  - LevelHazard
+  - Destroyer
   - 
   - 
   - 
