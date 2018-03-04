@@ -5,7 +5,6 @@ using UnityEngine;
 public class HazardController : MonoBehaviour {
 
     public GameObject[] Hazards;
-
     private int waveSpawns = 0;
     
     // Use this for initialization

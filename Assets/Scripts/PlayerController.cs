@@ -91,9 +91,8 @@ public class PlayerController : MonoBehaviour
             HitPlayer();
             Destroy(collision.gameObject);
         }
-        if (collision.gameObject.layer == LayerMask.NameToLayer("HittableHazard"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("WeakPoint"))
         {
-            Debug.Log("filha da puta");
             Destroy(collision.transform.parent.gameObject);
         }
     }
